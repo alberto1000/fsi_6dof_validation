@@ -1,0 +1,30 @@
+cd ../sphereAndBackground
+
+blockMesh
+
+topoSet -dict system/topoSetDictR2 | tee log.topoSet
+mv log.topoSet log.topoSet1
+refineMesh -dict system/refineMeshDict2 -overwrite
+
+cd ../sphereMesh
+
+blockMesh
+surfaceFeatureExtract
+decomposePar
+mpirun -np 24 snappyHexMesh -parallel -overwrite
+reconstructParMesh -constant
+topoSet
+
+cd ../sphereAndBackground
+
+mergeMeshes . ../sphereMesh -overwrite
+checkMesh
+topoSet  -dict system/topoSetDict | tee log.topoSet
+mv log.topoSet log.topoSet2
+setFields
+
+decomposePar
+mpirun -np 24 overPimpleDyMFoam -parallel | tee log.topoSet
+reconstructParMesh -constant
+
+paraFoam

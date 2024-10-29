@@ -1,0 +1,73 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2406                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+motionSolverLibs ( "libsixDoFRigidBodyMotion.so" );
+
+dynamicFvMesh       dynamicOversetFvMesh;
+
+solver              sixDoFRigidBodyMotion;
+
+diffusivity         quadratic inverseDistance 1.5 ( seed );
+
+sixDoFRigidBodyMotionCoeffs
+{
+    patches             ( seed );
+    innerDistance       2e-2; 
+    outerDistance       2;
+    centreOfMass        (0 0 0);
+    mass                5.5e-05;
+    momentOfInertia     (1.74403669210059e-09 3.16070864100764e-10 2.027012473404723e-09);
+    velocity            (0 0 0);
+    rho                 rhoInf;
+    rhoInf              1.225;
+    accelerationRelaxation 0.2;
+    report              on;
+    reportToFile        on;
+
+    solver
+    {
+        type            CrankNicolson;
+    }
+
+    constraints
+    {
+        onedegree_rotation
+        {
+            sixDoFRigidBodyMotionConstraint axis;
+            axis       (0 0 1); // Allow x-axis rotation
+        }
+
+        fixedTranslation
+		{
+		    sixDoFRigidBodyMotionConstraint line;
+		    direction (1 0 0); // Constrain x-axis translation
+		}
+
+		fixedTranslationY
+		{
+		    sixDoFRigidBodyMotionConstraint line;
+		    direction (0 1 0); 
+		}
+
+		fixedTranslationZ
+		{
+		    sixDoFRigidBodyMotionConstraint line;
+		    direction (0 0 1); 
+		}
+    }
+}
+
+// ************************************************************************* //

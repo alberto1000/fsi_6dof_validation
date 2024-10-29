@@ -1,0 +1,28 @@
+cd ../sphereAndBackground
+
+blockMesh
+
+topoSet -dict system/topoSetDictR2 | tee log.topoSet
+mv log.topoSet log.topoSet1
+runApplication refineMesh -dict system/refineMeshDict2 -overwrite
+
+cd ../sphereMesh
+
+blockMesh
+snappyHexMesh -overwrite
+transformPoints -scale '0.08333333'
+topoSet
+
+cd ../sphereAndBackground
+
+mergeMeshes . ../sphereMesh -overwrite
+
+topoSet  -dict system/topoSetDict | tee log.topoSet
+mv log.topoSet log.topoSet2
+setFields
+
+decomposePar
+mpirun -np 12 overPimpleDyMFoam -parallel
+recomposePar
+
+paraFoam

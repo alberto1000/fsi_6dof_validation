@@ -1,0 +1,50 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      refineMeshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Define the cellSet to refine (cylinder cells)
+set             cR2;
+
+// Coordinate system type: global for the whole domain
+coordinateSystem global;
+
+// Tangential vectors to define refinement directions
+globalCoeffs
+{
+    tan1            (1 0 0);  // x-axis
+    tan2            (0 1 0);  // y-axis
+}
+
+// Local coefficients for patch-specific refinement
+patchLocalCoeffs
+{
+    patch           wall;        // Refine wall patch in cylinder
+    tan1            (1 0 0);     // x-axis
+    tan2            (0 0 1);     // Refine along z-axis
+}
+
+// Specify refinement in normal direction, which is z-axis in this setup
+directions      
+(
+    tan1
+    tan2
+    normal          // z-axis refinement
+);
+
+// Maintain hex topology
+useHexTopology  yes; 
+
+// Avoid geometric cutting, prioritizing topology for refinement
+geometricCut    no;
+
+// Skip intermediate mesh write-out
+writeMesh       no;
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
