@@ -20,7 +20,7 @@ dynamicFvMesh       dynamicOversetFvMesh;
 
 solver              sixDoFRigidBodyMotion;
 
-diffusivity         quadratic inverseDistance 1.5 ( seed );
+diffusivity         quadratic inverseDistance 2 ( seed );
 
 sixDoFRigidBodyMotionCoeffs
 {
@@ -33,7 +33,7 @@ sixDoFRigidBodyMotionCoeffs
     velocity            (0 0 0);
     rho                 rhoInf;
     rhoInf              1.225;
-    accelerationRelaxation 0.2;
+    accelerationRelaxation 0.1;
     report              on;
     reportToFile        on;
 
