@@ -1,0 +1,41 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _52c02cff-20240620 OPENFOAM=2406 version=2406
+Arch   : "LSB;label=32;scalar=64"
+Exec   : topoSet -dict system/topoSetDictR2
+Date   : Oct 30 2024
+Time   : 01:03:25
+Host   : localhost.localdomain
+PID    : 262764
+I/O    : uncollated
+Case   : /home/lollilol/Desktop/falling_seed/background_zone
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create polyMesh for time = 0
+
+Reading topoSetDictR2
+
+Time = 0
+    mesh not changed.
+Created cellSet cref2
+    Applying source boxToCell
+    Adding cells with centre within boxes 1((-0.03 -0.03 -0.17) (0.03 0.03 1))
+    cellSet cref2 now size 472
+Created cellZoneSet cR2
+    Applying source setToCellZone
+    Adding all cells from cell set: cref2 ...
+    cellZoneSet cR2 now size 472
+
+End
+
