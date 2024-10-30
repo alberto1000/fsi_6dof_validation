@@ -22,22 +22,22 @@ FoamFile
     {
         type            overset;
         inGroups        1(overset);
-        nFaces          53;
-        startFace       79924;
+        nFaces          52;
+        startFace       60296;
     }
     seed
     {
         type            wall;
         inGroups        2(seed wall);
-        nFaces          8959;
-        startFace       79977;
+        nFaces          5692;
+        startFace       60348;
     }
     procBoundary3to1
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          2042;
-        startFace       88936;
+        nFaces          1596;
+        startFace       66040;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        3;
@@ -47,8 +47,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          317;
-        startFace       90978;
+        nFaces          129;
+        startFace       67636;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        3;
@@ -58,8 +58,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          1271;
-        startFace       91295;
+        nFaces          1178;
+        startFace       67765;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        3;
@@ -69,8 +69,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          304;
-        startFace       92566;
+        nFaces          431;
+        startFace       68943;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        3;
@@ -80,8 +80,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          1597;
-        startFace       92870;
+        nFaces          1110;
+        startFace       69374;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        3;
@@ -91,8 +91,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          31;
-        startFace       94467;
+        nFaces          8;
+        startFace       70484;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        3;

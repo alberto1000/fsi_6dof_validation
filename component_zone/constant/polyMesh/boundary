@@ -23,14 +23,14 @@ FoamFile
         type            overset;
         inGroups        1(overset);
         nFaces          21000;
-        startFace       1954708;
+        startFace       1954517;
     }
     seed
     {
         type            wall;
         inGroups        2(seed wall);
-        nFaces          135399;
-        startFace       1975708;
+        nFaces          133198;
+        startFace       1975517;
     }
 )
 

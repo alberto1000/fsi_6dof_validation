@@ -17,7 +17,7 @@ FoamFile
 // Which of the steps to run
 castellatedMesh true;
 snap            true;
-addLayers       false;
+addLayers       true;
 
    
 // Geometry. Definition of all surfaces. All surfaces are of class
@@ -56,7 +56,7 @@ castellatedMeshControls
     maxLocalCells 10000;  // Increased to allow more cells
     maxGlobalCells 300000; // Increased to refine smaller details
 
-    minRefinementCells 25;  // Allow for finer refinement
+    minRefinementCells 20;  // Allow for finer refinement
 
     nCellsBetweenLevels 3;  // Finer control over the refinement levels
 
@@ -75,7 +75,7 @@ castellatedMeshControls
         seed
         {
             // Surface-wise min and max refinement level
-            level (11 11);  // Increased refinement levels
+            level (11 13);  // Increased refinement levels
 
             patchInfo
             {

@@ -16,28 +16,28 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-11
+12
 (
     oversetPatch
     {
         type            overset;
         inGroups        1(overset);
         nFaces          0;
-        startFace       77676;
+        startFace       57847;
     }
     seed
     {
         type            wall;
         inGroups        2(seed wall);
-        nFaces          11061;
-        startFace       77676;
+        nFaces          8308;
+        startFace       57847;
     }
     procBoundary13to4
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          14;
-        startFace       88737;
+        nFaces          8;
+        startFace       66155;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        13;
@@ -47,8 +47,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          3040;
-        startFace       88751;
+        nFaces          1572;
+        startFace       66163;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        13;
@@ -58,8 +58,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          222;
-        startFace       91791;
+        nFaces          156;
+        startFace       67735;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        13;
@@ -69,8 +69,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          66;
-        startFace       92013;
+        nFaces          4;
+        startFace       67891;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        13;
@@ -80,30 +80,19 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          31;
-        startFace       92079;
+        nFaces          26;
+        startFace       67895;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        13;
         neighbProcNo    12;
     }
-    procBoundary13to14
-    {
-        type            processor;
-        inGroups        1(processor);
-        nFaces          13;
-        startFace       92110;
-        matchTolerance  0.0001;
-        transform       unknown;
-        myProcNo        13;
-        neighbProcNo    14;
-    }
     procBoundary13to15
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          505;
-        startFace       92123;
+        nFaces          246;
+        startFace       67921;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        13;
@@ -113,8 +102,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          706;
-        startFace       92628;
+        nFaces          356;
+        startFace       68167;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        13;
@@ -124,12 +113,34 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          2339;
-        startFace       93334;
+        nFaces          1808;
+        startFace       68523;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        13;
         neighbProcNo    21;
+    }
+    procBoundary13to27
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          10;
+        startFace       70331;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        13;
+        neighbProcNo    27;
+    }
+    procBoundary13to29
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          5;
+        startFace       70341;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        13;
+        neighbProcNo    29;
     }
 )
 

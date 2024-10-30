@@ -22,22 +22,22 @@ FoamFile
     {
         type            overset;
         inGroups        1(overset);
-        nFaces          1974;
-        startFace       78518;
+        nFaces          1924;
+        startFace       57982;
     }
     seed
     {
         type            wall;
         inGroups        2(seed wall);
-        nFaces          1934;
-        startFace       80492;
+        nFaces          381;
+        startFace       59906;
     }
     procBoundary7to5
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          1383;
-        startFace       82426;
+        nFaces          1158;
+        startFace       60287;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        7;
@@ -47,8 +47,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          684;
-        startFace       83809;
+        nFaces          660;
+        startFace       61445;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        7;
@@ -58,8 +58,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          1893;
-        startFace       84493;
+        nFaces          1807;
+        startFace       62105;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        7;

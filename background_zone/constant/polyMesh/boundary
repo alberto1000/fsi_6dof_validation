@@ -22,35 +22,35 @@ FoamFile
     {
         type            patch;
         nFaces          20000;
-        startFace       2703341;
+        startFace       2703150;
     }
     inlet
     {
         type            wall;
         inGroups        1(wall);
         nFaces          2500;
-        startFace       2723341;
+        startFace       2723150;
     }
     outlet
     {
         type            wall;
         inGroups        1(wall);
         nFaces          2500;
-        startFace       2725841;
+        startFace       2725650;
     }
     oversetPatch
     {
         type            overset;
         inGroups        1(overset);
         nFaces          21000;
-        startFace       2728341;
+        startFace       2728150;
     }
     seed
     {
         type            wall;
         inGroups        2(seed wall);
-        nFaces          135399;
-        startFace       2749341;
+        nFaces          133198;
+        startFace       2749150;
     }
 )
 

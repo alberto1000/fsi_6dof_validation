@@ -9,9 +9,9 @@ Build  : _52c02cff-20240620 OPENFOAM=2406 version=2406
 Arch   : "LSB;label=32;scalar=64"
 Exec   : topoSet -dict system/topoSetDict
 Date   : Oct 30 2024
-Time   : 01:11:18
+Time   : 11:29:35
 Host   : localhost.localdomain
-PID    : 263305
+PID    : 271953
 I/O    : uncollated
 Case   : /home/lollilol/Desktop/falling_seed/background_zone
 nProcs : 1
@@ -39,7 +39,7 @@ Created cellSet c1
     cellSet c1 now size 253304
 Read set cellSet c1 size:253304
     Inverting cellSet
-    cellSet c1 now size 637323
+    cellSet c1 now size 637287
 
 End
 

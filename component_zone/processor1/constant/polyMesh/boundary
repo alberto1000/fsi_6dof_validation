@@ -16,28 +16,28 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-7
+8
 (
     oversetPatch
     {
         type            overset;
         inGroups        1(overset);
         nFaces          1924;
-        startFace       78421;
+        startFace       57869;
     }
     seed
     {
         type            wall;
         inGroups        2(seed wall);
-        nFaces          1793;
-        startFace       80345;
+        nFaces          268;
+        startFace       59793;
     }
     procBoundary1to0
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          627;
-        startFace       82138;
+        nFaces          624;
+        startFace       60061;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        1;
@@ -47,8 +47,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          78;
-        startFace       82765;
+        nFaces          53;
+        startFace       60685;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        1;
@@ -58,8 +58,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          2042;
-        startFace       82843;
+        nFaces          1596;
+        startFace       60738;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        1;
@@ -69,8 +69,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          111;
-        startFace       84885;
+        nFaces          43;
+        startFace       62334;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        1;
@@ -80,12 +80,23 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          1877;
-        startFace       84996;
+        nFaces          1580;
+        startFace       62377;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        1;
         neighbProcNo    9;
+    }
+    procBoundary1to17
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          28;
+        startFace       63957;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        1;
+        neighbProcNo    17;
     }
 )
 

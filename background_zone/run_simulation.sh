@@ -10,9 +10,9 @@ refineMesh -dict system/refineMeshDict2 -overwrite
 # Go to component_zone and set up the component mesh
 cd ../component_zone
 blockMesh
-surfaceFeatureExtract
+surfaceFeatureExtract 
 decomposePar
-mpirun -np 24 snappyHexMesh -parallel -overwrite
+mpirun -np 32 snappyHexMesh -parallel -overwrite
 reconstructParMesh -constant
 topoSet
 
@@ -26,7 +26,7 @@ setFields
 
 # Decompose domain and run simulation
 decomposePar
-mpirun -np 24 overPimpleDyMFoam -parallel | tee log.simulation
+mpirun -np 32 overPimpleDyMFoam -parallel | tee log.simulation
 
 # Reconstruct final mesh and open ParaView for visualization
 reconstructParMesh -constant

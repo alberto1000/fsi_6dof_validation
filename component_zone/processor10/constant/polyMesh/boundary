@@ -16,28 +16,28 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-8
+10
 (
     oversetPatch
     {
         type            overset;
         inGroups        1(overset);
         nFaces          0;
-        startFace       77577;
+        startFace       57145;
     }
     seed
     {
         type            wall;
         inGroups        2(seed wall);
-        nFaces          11229;
-        startFace       77577;
+        nFaces          8885;
+        startFace       57145;
     }
     procBoundary10to0
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          738;
-        startFace       88806;
+        nFaces          555;
+        startFace       66030;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        10;
@@ -47,8 +47,8 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          2093;
-        startFace       89544;
+        nFaces          2017;
+        startFace       66585;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        10;
@@ -58,45 +58,67 @@ FoamFile
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          249;
-        startFace       91637;
+        nFaces          198;
+        startFace       68602;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        10;
         neighbProcNo    8;
     }
-    procBoundary10to9
-    {
-        type            processor;
-        inGroups        1(processor);
-        nFaces          20;
-        startFace       91886;
-        matchTolerance  0.0001;
-        transform       unknown;
-        myProcNo        10;
-        neighbProcNo    9;
-    }
     procBoundary10to12
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          579;
-        startFace       91906;
+        nFaces          641;
+        startFace       68800;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        10;
         neighbProcNo    12;
     }
+    procBoundary10to17
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          18;
+        startFace       69441;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        10;
+        neighbProcNo    17;
+    }
     procBoundary10to18
     {
         type            processor;
         inGroups        1(processor);
-        nFaces          2121;
-        startFace       92485;
+        nFaces          2661;
+        startFace       69459;
         matchTolerance  0.0001;
         transform       unknown;
         myProcNo        10;
         neighbProcNo    18;
+    }
+    procBoundary10to20
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          3;
+        startFace       72120;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        10;
+        neighbProcNo    20;
+    }
+    procBoundary10to26
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          4;
+        startFace       72123;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        10;
+        neighbProcNo    26;
     }
 )
 

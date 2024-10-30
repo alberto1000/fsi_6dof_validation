@@ -9,9 +9,9 @@ Build  : _52c02cff-20240620 OPENFOAM=2406 version=2406
 Arch   : "LSB;label=32;scalar=64"
 Exec   : topoSet -dict system/topoSetDictR2
 Date   : Oct 30 2024
-Time   : 01:03:25
+Time   : 11:26:22
 Host   : localhost.localdomain
-PID    : 262764
+PID    : 271363
 I/O    : uncollated
 Case   : /home/lollilol/Desktop/falling_seed/background_zone
 nProcs : 1

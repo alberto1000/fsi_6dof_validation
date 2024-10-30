@@ -1,0 +1,101 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       pointVectorField;
+    location    "0";
+    object      pointDisplacement;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 0 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    wall
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    inlet
+    {
+        type            fixedValue;
+        value           nonuniform List<vector> 0();
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    oversetPatch
+    {
+        type            zeroGradient;
+        patchType       overset;
+    }
+    seed
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    procBoundary26to2
+    {
+        type            processor;
+    }
+    procBoundary26to8
+    {
+        type            processor;
+    }
+    procBoundary26to9
+    {
+        type            processor;
+    }
+    procBoundary26to10
+    {
+        type            processor;
+    }
+    procBoundary26to16
+    {
+        type            processor;
+    }
+    procBoundary26to18
+    {
+        type            processor;
+    }
+    procBoundary26to20
+    {
+        type            processor;
+    }
+    procBoundary26to24
+    {
+        type            processor;
+    }
+    procBoundary26to25
+    {
+        type            processor;
+    }
+    procBoundary26to27
+    {
+        type            processor;
+    }
+    procBoundary26to28
+    {
+        type            processor;
+    }
+    procBoundary26to30
+    {
+        type            processor;
+    }
+}
+
+
+// ************************************************************************* //

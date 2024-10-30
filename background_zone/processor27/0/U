@@ -1,0 +1,146 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    wall
+    {
+        type            slip;
+    }
+    inlet
+    {
+        type            fixedValue;
+        value           nonuniform List<vector> 0();
+    }
+    outlet
+    {
+        type            zeroGradient;
+    }
+    oversetPatch
+    {
+        type            overset;
+        value           uniform (0 0 0);
+    }
+    seed
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to1
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to2
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to3
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to4
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to9
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to10
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to11
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to12
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to13
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to15
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to17
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to18
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to19
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to20
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to21
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to23
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to26
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to28
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+    procBoundary27to29
+    {
+        type            processor;
+        value           uniform (0 0 0);
+    }
+}
+
+
+// ************************************************************************* //

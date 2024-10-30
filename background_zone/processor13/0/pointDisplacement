@@ -1,0 +1,97 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       pointVectorField;
+    location    "0";
+    object      pointDisplacement;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 0 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    wall
+    {
+        type            fixedValue;
+        value           nonuniform List<vector> 0();
+    }
+    inlet
+    {
+        type            fixedValue;
+        value           nonuniform List<vector> 0();
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           nonuniform List<vector> 0();
+    }
+    oversetPatch
+    {
+        type            zeroGradient;
+        patchType       overset;
+    }
+    seed
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    procBoundary13to4
+    {
+        type            processor;
+    }
+    procBoundary13to5
+    {
+        type            processor;
+    }
+    procBoundary13to7
+    {
+        type            processor;
+    }
+    procBoundary13to11
+    {
+        type            processor;
+    }
+    procBoundary13to12
+    {
+        type            processor;
+    }
+    procBoundary13to14
+    {
+        type            processor;
+    }
+    procBoundary13to15
+    {
+        type            processor;
+    }
+    procBoundary13to19
+    {
+        type            processor;
+    }
+    procBoundary13to21
+    {
+        type            processor;
+    }
+    procBoundary13to27
+    {
+        type            processor;
+    }
+    procBoundary13to29
+    {
+        type            processor;
+    }
+}
+
+
+// ************************************************************************* //

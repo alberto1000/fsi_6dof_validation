@@ -1,0 +1,145 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+13
+(
+    wall
+    {
+        type            patch;
+        nFaces          0;
+        startFace       85145;
+    }
+    inlet
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          0;
+        startFace       85145;
+    }
+    outlet
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          0;
+        startFace       85145;
+    }
+    oversetPatch
+    {
+        type            overset;
+        inGroups        1(overset);
+        nFaces          0;
+        startFace       85145;
+    }
+    seed
+    {
+        type            wall;
+        inGroups        2(seed wall);
+        nFaces          6572;
+        startFace       85145;
+    }
+    procBoundary20to10
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          2;
+        startFace       91717;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        20;
+        neighbProcNo    10;
+    }
+    procBoundary20to12
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          2195;
+        startFace       91719;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        20;
+        neighbProcNo    12;
+    }
+    procBoundary20to14
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          333;
+        startFace       93914;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        20;
+        neighbProcNo    14;
+    }
+    procBoundary20to18
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          89;
+        startFace       94247;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        20;
+        neighbProcNo    18;
+    }
+    procBoundary20to26
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          290;
+        startFace       94336;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        20;
+        neighbProcNo    26;
+    }
+    procBoundary20to27
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          45;
+        startFace       94626;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        20;
+        neighbProcNo    27;
+    }
+    procBoundary20to28
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          3420;
+        startFace       94671;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        20;
+        neighbProcNo    28;
+    }
+    procBoundary20to29
+    {
+        type            processor;
+        inGroups        1(processor);
+        nFaces          33;
+        startFace       98091;
+        matchTolerance  0.0001;
+        transform       unknown;
+        myProcNo        20;
+        neighbProcNo    29;
+    }
+)
+
+// ************************************************************************* //
