@@ -45,7 +45,7 @@ boundaryField
     inlet
     {
         type            turbulentMixingLengthDissipationRateInlet;
-        mixingLength    0.01;       // 1cm - half channel height
+        mixingLength    1;       // half channel height
         value           $internalField;
     }
 

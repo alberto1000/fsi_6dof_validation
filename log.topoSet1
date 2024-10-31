@@ -5,15 +5,15 @@
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
-Build  : _52c02cff-20240620 OPENFOAM=2406 version=2406
+Build  : _be01ca78-20240625 OPENFOAM=2406 version=2406
 Arch   : "LSB;label=32;scalar=64"
 Exec   : topoSet -dict system/topoSetDictR2
-Date   : Oct 30 2024
-Time   : 00:05:11
-Host   : localhost.localdomain
-PID    : 259071
+Date   : Oct 31 2024
+Time   : 11:44:44
+Host   : dell-Inspiron-16-Plus-7630
+PID    : 159650
 I/O    : uncollated
-Case   : /home/lollilol/Desktop/falling_seed
+Case   : /home/dell/Desktop/fsi_rigid
 nProcs : 1
 trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
 fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)

@@ -42,11 +42,17 @@ boundaryField
     outlet
     {
         type            fixedValue;
-        value           uniform 0;  // Zero pressure at outlet
+        value           $internalField;
     }
 
     wall
     {
-        type            zeroGradient;  // Slip condition
+        type            zeroGradient;  
     }
+    
+     ".*"
+    {
+        type            zeroGradient;
+    }
+
 }

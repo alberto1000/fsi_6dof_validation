@@ -29,7 +29,11 @@ boundaryField
         type            overset;
     }
 
-    #include "include/fixedInlet"
+    inlet
+    {
+	type  fixedValue;
+	value $internalField;
+    }
 
     outlet
     {

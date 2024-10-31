@@ -6,14 +6,14 @@ blockMesh
 topoSet -dict system/topoSetDictR2 | tee log.topoSet
 mv log.topoSet log.topoSet1
 refineMesh -dict system/refineMeshDict2 -overwrite
-cp -r 0.origin/* 0/
+# copy 0.origin in 0 folder
 
 # Go to component_zone and set up the component mesh
 cd ../component_zone
 blockMesh
 surfaceFeatureExtract 
 decomposePar
-mpirun -np 32 snappyHexMesh -parallel -overwrite
+mpirun -np 12 snappyHexMesh -parallel -overwrite
 reconstructParMesh -constant
 topoSet
 
@@ -27,7 +27,7 @@ setFields
 
 # Decompose domain and run simulation
 decomposePar
-mpirun -np 32 overPimpleDyMFoam -parallel | tee log.simulation
+mpirun -np 12 overPimpleDyMFoam -parallel | tee log.simulation
 
 # Reconstruct final mesh and open ParaView for visualization
 reconstructParMesh -constant

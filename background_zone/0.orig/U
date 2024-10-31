@@ -18,7 +18,7 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (0 0 0);
+internalField    uniform $flowVelocity;
 
 boundaryField
 {
@@ -31,23 +31,32 @@ boundaryField
 
     seed
     {
-        type            fixedValue;
-        value           uniform (0 0 0);  // No-slip condition
+        type            movingWallVelocity;
+        value           uniform (0 0 0);  
     }
 
     inlet
     {
         type            fixedValue;
-        value           uniform (0 0 0.8);  // Constant inlet velocity
+        value           $internalField; 
     }
 
     outlet
     {
-        type            zeroGradient;  // Allows outflow
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);
+        value           $internalField;
     }
+
     
     wall
     {
-        type            slip;  // Zero-shear condition
+        type            zeroGradient;  // Zero-shear condition
     }
+    
+     ".*"
+    {
+        type            zeroGradient;
+    }
+
 }
