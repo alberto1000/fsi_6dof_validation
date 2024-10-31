@@ -6,7 +6,7 @@ blockMesh
 topoSet -dict system/topoSetDictR2 | tee log.topoSet
 mv log.topoSet log.topoSet1
 refineMesh -dict system/refineMeshDict2 -overwrite
-# copy 0.origin in 0 folder
+cp -r 0.orig/. 0/
 
 # Go to component_zone and set up the component mesh
 cd ../component_zone
