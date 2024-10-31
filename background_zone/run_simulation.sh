@@ -13,7 +13,7 @@ cd ../component_zone
 blockMesh
 surfaceFeatureExtract 
 decomposePar
-mpirun -np 32 snappyHexMesh -parallel -overwrite
+mpirun -np 12 snappyHexMesh -parallel -overwrite
 reconstructParMesh -constant
 topoSet
 
@@ -27,7 +27,7 @@ setFields
 
 # Decompose domain and run simulation
 decomposePar
-mpirun -np 32 overPimpleDyMFoam -parallel | tee log.simulation
+mpirun -np 12 overPimpleDyMFoam -parallel | tee log.simulation
 
 # Reconstruct final mesh and open ParaView for visualization
 reconstructParMesh -constant
