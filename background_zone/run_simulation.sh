@@ -24,6 +24,8 @@ checkMesh
 topoSet -dict system/topoSetDict | tee log.topoSet
 mv log.topoSet log.topoSet2
 setFields
+touch total_mesh.foam
+paraview total_mesh.foam
 
 # Decompose domain and run simulation
 decomposePar

@@ -16,3 +16,9 @@ plot "plotfile" u 1:5   title 'vx' with lines,\
 
 pause -1
 
+set title "angular velocity of centre of Mass"
+set ylabel 'Centre of Mass velocity'
+set xlabel 'time'
+plot "plotfile" u 1:8   title 'wx' with lines,\
+    "plotfile" u 1:9   title 'wy' with lines,\
+    "plotfile" u 1:10   title 'wz' with lines, \

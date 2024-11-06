@@ -1,9 +1,11 @@
-cat log.topoSet | grep -w 'Time =' | cut -d' ' -f3 | tr -d '(' > time
-cat log.topoSet | grep 'of mass' | cut -d' ' -f8 | tr -d '('  > xcenter
-cat log.topoSet | grep 'of mass' | cut -d' ' -f9 | tr -d '('  > ycenter
-cat log.topoSet | grep 'of mass' | cut -d' ' -f10 | tr -d ')'  > zcenter
-cat log.topoSet | grep 'Linear' | cut -d' ' -f7 | tr -d '(' > vx
-cat log.topoSet | grep 'Linear' | cut -d' ' -f8 | tr -d ' ' > vy
-cat log.topoSet | grep 'Linear' | cut -d' ' -f9 | tr -d ')' > vz
-
-paste time xcenter ycenter zcenter vx vy vz > plotfile
+cat log.simulation | grep -w 'Time =' | cut -d' ' -f3 | tr -d '(' > time
+cat log.simulation | grep 'of mass' | cut -d' ' -f8 | tr -d '('  > xcenter
+cat log.simulation | grep 'of mass' | cut -d' ' -f9 | tr -d '('  > ycenter
+cat log.simulation | grep 'of mass' | cut -d' ' -f10 | tr -d ')'  > zcenter
+cat log.simulation | grep 'Linear' | cut -d' ' -f7 | tr -d '(' > vx
+cat log.simulation | grep 'Linear' | cut -d' ' -f8 | tr -d ' ' > vy
+cat log.simulation | grep 'Linear' | cut -d' ' -f9 | tr -d ')' > vz
+cat log.simulation | grep 'Linear' | cut -d' ' -f11 | tr -d '(' > wx
+cat log.simulation | grep 'Linear' | cut -d' ' -f12 | tr -d ' ' > wy
+cat log.simulation | grep 'Linear' | cut -d' ' -f13 | tr -d ')' > wz
+paste time xcenter ycenter zcenter vx vy vz  wx wy wz> plotfile

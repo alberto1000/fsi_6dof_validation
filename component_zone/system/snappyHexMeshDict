@@ -53,7 +53,7 @@ castellatedMeshControls
 {
 
     // Refinement parameters
-    maxLocalCells 10000;  // Increased to allow more cells
+    maxLocalCells 8000;  // Increased to allow more cells
     maxGlobalCells 300000; // Increased to refine smaller details
 
     minRefinementCells 20;  // Allow for finer refinement
@@ -65,7 +65,7 @@ castellatedMeshControls
     (
         {
             file "seed.eMesh";
-            level 8;
+            level 6;
         }
     );
 
@@ -75,7 +75,7 @@ castellatedMeshControls
         seed
         {
             // Surface-wise min and max refinement level
-            level (11 13);  // Increased refinement levels
+            level (9 9);  // Increased refinement levels
 
             patchInfo
             {
