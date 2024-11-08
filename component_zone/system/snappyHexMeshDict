@@ -54,9 +54,9 @@ castellatedMeshControls
 
     // Refinement parameters
     maxLocalCells 8000;  // Increased to allow more cells
-    maxGlobalCells 300000; // Increased to refine smaller details
+    maxGlobalCells 150000; // Increased to refine smaller details
 
-    minRefinementCells 20;  // Allow for finer refinement
+    minRefinementCells 30;  // Allow for finer refinement
 
     nCellsBetweenLevels 3;  // Finer control over the refinement levels
 
@@ -65,7 +65,7 @@ castellatedMeshControls
     (
         {
             file "seed.eMesh";
-            level 6;
+            level 6; // 8
         }
     );
 
@@ -75,7 +75,7 @@ castellatedMeshControls
         seed
         {
             // Surface-wise min and max refinement level
-            level (9 9);  // Increased refinement levels
+            level (9 9);  // (11 12) 
 
             patchInfo
             {
@@ -90,11 +90,6 @@ castellatedMeshControls
 
     refinementRegions
     {
-        /*refinementBox
-        {
-            mode inside;
-            levels ((1E17 1));
-        }*/
     }
 
     locationInMesh ( -0.09 0.03 -1e-1);  // Adjusted to ensure correct location in the mesh
@@ -126,7 +121,7 @@ addLayersControls
 
     layers
     {
-        "(lowerWall|motorBike).*"
+        "(lowerWall|seed).*"
         {
             nSurfaceLayers 1;  // Increased to capture finer details
         }
