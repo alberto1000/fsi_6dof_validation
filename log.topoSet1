@@ -8,10 +8,10 @@
 Build  : _be01ca78-20240625 OPENFOAM=2406 version=2406
 Arch   : "LSB;label=32;scalar=64"
 Exec   : topoSet -dict system/topoSetDictR2
-Date   : Oct 31 2024
-Time   : 15:05:30
+Date   : Nov 06 2024
+Time   : 18:11:36
 Host   : dell-Inspiron-16-Plus-7630
-PID    : 195448
+PID    : 66187
 I/O    : uncollated
 Case   : /home/dell/Desktop/fsi_rigid
 nProcs : 1

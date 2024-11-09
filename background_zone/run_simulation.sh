@@ -3,9 +3,10 @@
 # Go to background_zone directory and set up the background mesh
 cd ../background_zone
 blockMesh
-topoSet -dict system/topoSetDictR2 | tee log.topoSet
+#topoSet -dict system/topoSetDictR2 | tee log.topoSet
+topoSet -dict system/topoSetDict | tee log.topoSet
 mv log.topoSet log.topoSet1
-refineMesh -dict system/refineMeshDict2 -overwrite
+#refineMesh -dict system/refineMeshDict2 -overwrite
 cp -r 0.orig/. 0/
 
 # Go to component_zone and set up the component mesh
@@ -24,13 +25,12 @@ checkMesh
 topoSet -dict system/topoSetDict | tee log.topoSet
 mv log.topoSet log.topoSet2
 setFields
-touch total_mesh.foam
-paraview total_mesh.foam
+#paraFoam
 
 # Decompose domain and run simulation
 decomposePar
 mpirun -np 12 overPimpleDyMFoam -parallel | tee log.simulation
 
 # Reconstruct final mesh and open ParaView for visualization
-reconstructParMesh -constant
+reconstructPar
 paraFoam

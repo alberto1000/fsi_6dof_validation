@@ -18,7 +18,7 @@ simulationType RAS; //laminar;
 
 RAS
 {
-    RASModel        kEpsilon;
+    RASModel        kOmegaSST;
 
     turbulence      on;
 
