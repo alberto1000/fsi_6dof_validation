@@ -1,32 +1,24 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-import subprocess 
+import subprocess
 
-# Function to run the makeFiles script
-def run_make_files():
-    try:
-        # Ensure we are in the correct directory for the makeFiles script
-        current_dir = os.getcwd()
-        make_files_path = './makeFiles'
-        
-        # Log the current directory for debugging purposes
-        print(f"Current directory: {current_dir}")
-        
-        # Check if the script exists and is executable
-        if os.path.isfile(make_files_path) and os.access(make_files_path, os.X_OK):
-            print("Executing makeFiles script...")
-            # Run the script using subprocess
-            result = subprocess.run(['./makeFiles'], check=True, capture_output=True, text=True)
-            
-            # Log the output of the script for debugging
-            print(f"makeFiles output: {result.stdout}")
-            print(f"makeFiles errors (if any): {result.stderr}")
-            print("makeFiles script executed successfully.")
-        else:
-            print("Error: makeFiles script not found or not executable.")
-    except Exception as e:
-        print(f"Error executing makeFiles script: {e}")
+# Run the sequence of commands to get data
+subprocess.run("cat log.simulation | grep -w 'Time =' | cut -d' ' -f3 | tr -d '(' > time", shell=True)
+subprocess.run("cat log.simulation | grep 'of mass' | cut -d' ' -f8 | tr -d '(' > xcenter", shell=True)
+subprocess.run("cat log.simulation | grep 'of mass' | cut -d' ' -f9 | tr -d '(' > ycenter", shell=True)
+subprocess.run("cat log.simulation | grep 'of mass' | cut -d' ' -f10 | tr -d ')' > zcenter", shell=True)
+subprocess.run("cat log.simulation | grep 'Linear' | cut -d' ' -f7 | tr -d '(' > vx", shell=True)
+subprocess.run("cat log.simulation | grep 'Linear' | cut -d' ' -f8 | tr -d ' ' > vy", shell=True)
+subprocess.run("cat log.simulation | grep 'Linear' | cut -d' ' -f9 | tr -d ')' > vz", shell=True)
+subprocess.run("cat log.simulation | grep 'Angular' | cut -d' ' -f7 | tr -d '(' > wx", shell=True)
+subprocess.run("cat log.simulation | grep 'Angular' | cut -d' ' -f8 | tr -d '(' > wy", shell=True)
+subprocess.run("cat log.simulation | grep 'Angular' | cut -d' ' -f9 | tr -d ')' > wz", shell=True)
+subprocess.run("cat log.simulation | grep 'Courant Number' | awk '{print $4}' > Co_mean", shell=True)
+subprocess.run("cat log.simulation | grep 'Courant Number' | awk '{print $6}' > Co_max", shell=True)
+
+# Combine the generated files into plotfile
+subprocess.run("paste time xcenter ycenter zcenter vx vy vz wx wy wz Co_mean Co_max > plotfile", shell=True)
 
 
 # Function to load the generated data from the plotfile
@@ -47,7 +39,7 @@ def load_data():
             raise ValueError("Data is not in the expected multi-column format.")
         
         # Verify that each row has exactly 10 columns, otherwise skip
-        expected_columns = 10
+        expected_columns = 12
         data = [row for row in data if len(row) == expected_columns]
         
         if len(data) == 0:
@@ -66,8 +58,9 @@ def load_data():
         wx = data[:, 7]
         wy = data[:, 8]
         wz = data[:, 9]
-        
-        return time, xcenter, ycenter, zcenter, vx, vy, vz, wx, wy, wz
+        Co_mean = data[:, 10]
+        Co_max = data[:, 11]       
+        return time, xcenter, ycenter, zcenter, vx, vy, vz, wx, wy, wz, Co_mean, Co_max
     
     except Exception as e:
         print(f"Error loading data from {plotfile_path}: {e}")
@@ -98,7 +91,7 @@ if motion_data is None:
     print("Error: Motion data could not be loaded.")
 else:
     # Unpack motion data
-    time, xcenter, ycenter, zcenter, vx, vy, vz, wx, wy, wz = motion_data
+    time, xcenter, ycenter, zcenter, vx, vy, vz, wx, wy, wz, Co_mean, Co_max = motion_data
 
     # Create subplots for motion data and force & moment data
     fig, axs = plt.subplots(4, 1, figsize=(10, 16))
@@ -111,7 +104,7 @@ else:
     axs[0].set_xlabel('Time')
     axs[0].set_ylabel('Centre of Mass [m]')
     axs[0].legend(loc="upper right")
-    axs[0].grid()
+
 
     # Plot velocity of Centre of Mass
     axs[1].plot(time, vx, label='vx', color='r')
@@ -121,7 +114,7 @@ else:
     axs[1].set_xlabel('Time')
     axs[1].set_ylabel('Velocity [m/s]')
     axs[1].legend(loc="upper right")
-    axs[1].grid()
+
 
     # Plot Angular Velocity of Centre of Mass
     axs[2].plot(time, wx, label='wx', color='r')
@@ -131,29 +124,38 @@ else:
     axs[2].set_xlabel('Time')
     axs[2].set_ylabel('Angular Velocity [rad/s]')
     axs[2].legend(loc="upper right")
-    axs[2].grid()
+
+
+	# Plot Courant number
+    axs[3].plot(time, Co_mean, label='Co_mean', color='g')
+    axs[3].plot(time, Co_max, label='Co_max', color='r')
+    axs[3].set_title("Mean and Max Courant number")
+    axs[3].set_xlabel('Time')
+    axs[3].set_ylabel('Co')
+    axs[3].legend(loc="upper right")
+
 
     # Total force plot
     fig_force, axs_force = plt.subplots(1, 1, figsize=(10, 5))
     axs_force.plot(time_force, total_fx, label="Total Fx", color="r")
     axs_force.plot(time_force, total_fy, label="Total Fy", color="g")
     axs_force.plot(time_force, total_fz, label="Total Fz", color="b")
-    axs_force.set_ylim([0, 6e-4])
+    #axs_force.set_ylim([0, 6e-4])
     axs_force.set_xlabel("Time")
     axs_force.set_ylabel("Total Force [N]")
     axs_force.legend(loc="upper right")
-    axs_force.grid()
+
 
     # Total moment plot
     fig_moment, axs_moment = plt.subplots(1, 1, figsize=(10, 5))
     axs_moment.plot(time_moment, total_mx, label="Total Mx", color="r")
     axs_moment.plot(time_moment, total_my, label="Total My", color="g")
     axs_moment.plot(time_moment, total_mz, label="Total Mz", color="b")
-    axs_moment.set_ylim([-6e-8, 1e-5])
+    #axs_moment.set_ylim([-6e-8, 1e-5])
     axs_moment.set_xlabel("Time")
     axs_moment.set_ylabel("Total Moment [Nm]")
     axs_moment.legend(loc="upper right")
-    axs_moment.grid()
+
 
     # Adjust layout to prevent overlap
     plt.tight_layout()
