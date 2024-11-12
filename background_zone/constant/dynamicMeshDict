@@ -33,7 +33,7 @@ sixDoFRigidBodyMotionCoeffs
     velocity            (0 0 0);
     rho                 rhoInf;
     rhoInf              1.225;
-    accelerationRelaxation 0.1;
+    accelerationRelaxation 0.7;
     report              on;
     reportToFile        on;
 

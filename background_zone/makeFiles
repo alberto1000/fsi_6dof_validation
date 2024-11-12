@@ -5,7 +5,7 @@ cat log.simulation | grep 'of mass' | cut -d' ' -f10 | tr -d ')'  > zcenter
 cat log.simulation | grep 'Linear' | cut -d' ' -f7 | tr -d '(' > vx
 cat log.simulation | grep 'Linear' | cut -d' ' -f8 | tr -d ' ' > vy
 cat log.simulation | grep 'Linear' | cut -d' ' -f9 | tr -d ')' > vz
-cat log.simulation | grep 'Linear' | cut -d' ' -f11 | tr -d '(' > wx
-cat log.simulation | grep 'Linear' | cut -d' ' -f12 | tr -d ' ' > wy
-cat log.simulation | grep 'Linear' | cut -d' ' -f13 | tr -d ')' > wz
-paste time xcenter ycenter zcenter vx vy vz  wx wy wz> plotfile
+cat log.simulation | grep 'Angular' | cut -d' ' -f7 | tr -d '(' > wx
+cat log.simulation | grep 'Angular' | cut -d' ' -f8 | tr -d '(' > wy
+cat log.simulation | grep 'Angular' | cut -d' ' -f9 | tr -d ')' > wz
+paste time xcenter ycenter zcenter vx vy vz wx wy wz > plotfile

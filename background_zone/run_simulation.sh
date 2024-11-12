@@ -29,7 +29,7 @@ setFields
 
 # Decompose domain and run simulation
 decomposePar
-mpirun -np 12 overPimpleDyMFoam -parallel | tee log.simulation
+mpirun -np 32 overPimpleDyMFoam -parallel | tee log.simulation
 
 # Reconstruct final mesh and open ParaView for visualization
 reconstructPar
