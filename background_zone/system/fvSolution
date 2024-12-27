@@ -12,8 +12,7 @@ FoamFile
     class       dictionary;
     object      fvSolution;
 }
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
+/*
 solvers
 {
     cellDisplacement
@@ -29,9 +28,95 @@ solvers
     {
         solver          PBiCGStab;
         preconditioner  DILU;
+        tolerance       1e-11;
+        relTol          0.01;
+    }
+
+    pFinal
+    {
+        $p;
+        relTol          0;
+    }
+
+    pcorr
+    {
+        $p;
+        solver          PCG;
+        preconditioner  DIC;
+    }
+
+    pcorrFinal
+    {
+        $pcorr;
+        relTol          0;
+    }
+
+    "(U|k|omega)"
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
         tolerance       1e-6;
         relTol          0;
     }
+
+    "(U|k|omega)Final"
+    {
+        $U;
+        tolerance       1e-6;
+        relTol          0;
+    }
+}
+
+PIMPLE
+{
+    momentumPredictor   true;
+    oversetAdjustPhi    true;
+    nOuterCorrectors    7;
+    nCorrectors         4;
+    nNonOrthogonalCorrectors 2;
+    massFluxInterpolation true;
+    ddtCorr             false;
+    turbOnFinalIterOnly false;
+
+
+
+}
+
+relaxationFactors
+{
+    fields
+    {
+        p               0.4;
+    }
+    equations
+    {
+        "(U|k|omega)"   0.6;
+        ".*Final"        1;
+    }
+}
+*/
+
+
+solvers
+{
+    cellDisplacement
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-07;
+        relTol          0;
+        maxIter         100;
+    }
+
+    p
+    {
+        solver          PBiCGStab; 
+        preconditioner  DILU;
+        tolerance       1e-8;
+        relTol          0;
+    }
+
+
 
 
     pFinal
@@ -43,8 +128,8 @@ solvers
     pcorr
     {
         $pFinal;
-        solver          PCG;
-        preconditioner  DIC;
+        solver          PBiCGStab;
+        preconditioner  DILU;
     }
 
     pcorrFinal
@@ -74,13 +159,14 @@ PIMPLE
 {
     momentumPredictor   true;
     oversetAdjustPhi    true;
-    nOuterCorrectors    5;
-    nCorrectors         5;
-    nNonOrthogonalCorrectors 0;
+    nOuterCorrectors    4;
+    nCorrectors         4;
+    nNonOrthogonalCorrectors 2;
     massFluxInterpolation true;
     ddtCorr             false;
     turbOnFinalIterOnly false;
-
+    pRefCell		0;
+    pRefValue		0;
 
 
 }
@@ -89,14 +175,13 @@ relaxationFactors
 {
     fields
     {
-        p               0.7;
+        p               0.3;
     }
     equations
     {
         "(U|k|omega)"   0.7;
-        ".*Final"        0.7;
+        ".*Final"        0.9;
     }
 }
-
 
 // ************************************************************************* //

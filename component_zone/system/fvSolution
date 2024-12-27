@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  v2406                                 |
-|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|  \\    /   O peration     | Version:  plus                                  |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -12,76 +12,176 @@ FoamFile
     class       dictionary;
     object      fvSolution;
 }
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
+/*
 solvers
 {
+    cellDisplacement
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-06;
+        relTol          0;
+        maxIter         100;
+    }
+
     p
     {
-        solver          GAMG;
-        smoother        GaussSeidel;
-        tolerance       1e-7;
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-11;
         relTol          0.01;
     }
 
-    Phi
+    pFinal
     {
         $p;
+        relTol          0;
     }
 
-    U
+    pcorr
     {
-        solver          smoothSolver;
-        smoother        GaussSeidel;
-        tolerance       1e-8;
-        relTol          0.1;
-        nSweeps         1;
+        $p;
+        solver          PCG;
+        preconditioner  DIC;
     }
 
-    k
+    pcorrFinal
     {
-        solver          smoothSolver;
-        smoother        GaussSeidel;
-        tolerance       1e-8;
-        relTol          0.1;
-        nSweeps         1;
+        $pcorr;
+        relTol          0;
     }
 
-    omega
+    "(U|k|omega)"
     {
         solver          smoothSolver;
-        smoother        GaussSeidel;
-        tolerance       1e-8;
-        relTol          0.1;
-        nSweeps         1;
+        smoother        symGaussSeidel;
+        tolerance       1e-6;
+        relTol          0;
+    }
+
+    "(U|k|omega)Final"
+    {
+        $U;
+        tolerance       1e-6;
+        relTol          0;
     }
 }
 
-SIMPLE
+PIMPLE
 {
-    nNonOrthogonalCorrectors 0;
-    consistent yes;
-}
+    momentumPredictor   true;
+    oversetAdjustPhi    true;
+    nOuterCorrectors    7;
+    nCorrectors         4;
+    nNonOrthogonalCorrectors 2;
+    massFluxInterpolation true;
+    ddtCorr             false;
+    turbOnFinalIterOnly false;
 
-potentialFlow
-{
-    nNonOrthogonalCorrectors 10;
+
+
 }
 
 relaxationFactors
 {
+    fields
+    {
+        p               0.4;
+    }
     equations
     {
-        U               0.9;
-        k               0.7;
-        omega           0.7;
+        "(U|k|omega)"   0.6;
+        ".*Final"        1;
+    }
+}
+*/
+
+
+solvers
+{
+    cellDisplacement
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-07;
+        relTol          0;
+        maxIter         100;
+    }
+
+    p
+    {
+        solver          PBiCGStab; 
+        preconditioner  DILU;
+        tolerance       1e-8;
+        relTol          0;
+    }
+
+
+
+
+    pFinal
+    {
+        $p;
+        relTol          0;
+    }
+
+    pcorr
+    {
+        $pFinal;
+        solver          PBiCGStab;
+        preconditioner  DILU;
+    }
+
+    pcorrFinal
+    {
+        $pcorr;
+        relTol          0;
+    }
+
+    "(U|k|epsilon|omega)"
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-6;
+        relTol          0;
+    }
+
+    "(U|k|epsilon|omega)Final"
+    {
+        $U;
+        tolerance       1e-6;
+        relTol          0;
     }
 }
 
-cache
+
+PIMPLE
 {
-    grad(U);
+    momentumPredictor   true;
+    oversetAdjustPhi    true;
+    nOuterCorrectors    4;
+    nCorrectors         6;
+    nNonOrthogonalCorrectors 2;
+    massFluxInterpolation true;
+    ddtCorr             true;
+    turbOnFinalIterOnly false;
+    pRefCell		0;
+    pRefValue		0;
+
+
 }
 
+relaxationFactors
+{
+    fields
+    {
+        p               0.3;
+    }
+    equations
+    {
+        "(U|k|omega)"   0.7;
+        ".*Final"        0.8;
+    }
+}
 
 // ************************************************************************* //

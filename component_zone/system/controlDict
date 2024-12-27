@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  v2406                                 |
-|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|  \\    /   O peration     | Version:  plus                                  |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -14,27 +14,28 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     simpleFoam;
+libs            ("liboverset.so");
+
+application     overPimpleDyMFoam;
 
 startFrom       latestTime;
 
-startTime       0;
 
 stopAt          endTime;
 
-endTime         500;
+endTime         4;
 
-deltaT          1;
+deltaT          1e-3;
 
-writeControl    timeStep;
 
-writeInterval   100;
+writeControl    adjustableRunTime;
+writeInterval   0.05;
 
 purgeWrite      0;
 
-writeFormat     binary;
+writeFormat     ascii;
 
-writePrecision  6;
+writePrecision  12;
 
 writeCompression off;
 
@@ -44,7 +45,58 @@ timePrecision   6;
 
 runTimeModifiable true;
 
+adjustTimeStep  true;
 
+maxCo 		10;
+
+functions
+{
+
+forces1
+    {
+        type          forces;
+        libs          ("libforces.so");
+
+        patches       ("seed"); // Specify the patches where forces are calculated
+        rho           rhoInf;     // Use `none` to indicate incompressible, or you can omit it
+        rhoInf        1.225;    // Set your desired constant density here (e.g., for air)
+        log           yes;
+        
+        origin        (0 0 0);
+        rotation
+        {
+            type      axes;
+            e3        (0 0 1);
+            e1        (1 0 0);
+        }
+    }
+
+
+
+fileUpdate1
+{
+    type              timeActivatedFileUpdate;
+    libs              ("libutilityFunctionObjects.so");
+    writeControl      timeStep;
+    writeInterval     1;
+    fileToUpdate      "<system>/maxCo";
+    timeVsFile
+    (
+        (-1   "<system>/maxCo0.01")
+        (0.01 "<system>/maxCo0.02")
+        (0.04 "<system>/maxCo0.03")
+        (0.06 "<system>/maxCo0.04")
+        (0.07 "<system>/maxCo0.05")
+        (0.09 "<system>/maxCo0.06")
+        (0.1 "<system>/maxCo0.07")
+        (0.2 "<system>/maxCo0.08")
+        (0.3 "<system>/maxCo0.09")
+        (0.4 "<system>/maxCo0.10")
+    );
+}
+
+    
+}
 
 
 // ************************************************************************* //

@@ -24,16 +24,7 @@ boundaryField
     {
         type            overset;
     }
-    inlet
-    {
-        type            fixedValue;
-        value           uniform 0;
-    }
-
-    outlet
-    {
-        type            zeroGradient;
-    }
+    
 
     wall
     {

@@ -15,35 +15,36 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+/*
 ddtSchemes
 {
-    default         backward;
+    default CrankNicolson 0.5;
 }
 
 gradSchemes
 {
-    default         leastSquares;
+    //default         leastSquares;
+	default         Gauss linear;
+    grad(p)         Gauss linear limited 0.5;
+	//default cellMDLimited Gauss linear 0.5;
+	//grad(U) cellMDLimited Gauss linear 0.5;
 }
 
 divSchemes
 {
-    default         none;
-    div(phi,U)      Gauss limitedLinearV 1;
-    div(phi,k)      Gauss limitedLinear 1;;
-    div(phi,epsilon) Gauss limitedLinear 1;;
-    div(phi,R)      Gauss limitedLinear 1;;
-    div(R)          Gauss limitedLinear 1;;
-    div(phi,omega)  Gauss limitedLinear 1;
-    div(phid,p)     Gauss limitedLinear 1;
-    div(phi,K)      Gauss limitedLinear 1;
-    div(phi,e)      Gauss limitedLinear 1;
-    div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
-    div((nuEff*dev2(T(grad(U)))))   Gauss linear;
+    default          none;
+    div(phi,U)     	 Gauss linearUpwind grad(U);
+	div(phi,k)       Gauss linearUpwind grad(k);
+    div(phi,epsilon) Gauss linearUpwind grad(epsilon);
+    div(phi,omega)   Gauss linearUpwind grad(omega);
+ 	div(div(phi,U))  Gauss linearUpwind grad(U);
+    div((nuEff*dev2(T(grad(U))))) Gauss linear;
 }
+
 
 laplacianSchemes
 {
-    default         Gauss linear corrected;
+    default         Gauss linear limited 0.777;
 }
 
 interpolationSchemes
@@ -52,15 +53,15 @@ interpolationSchemes
 }
 
 snGradSchemes
-{
-    default         corrected ;
+{ 
+    default         limited 0.777; //corrected
 }
 
 oversetInterpolation
 {
     method          inverseDistance;
-    holeLayers          2;
-    useLayer            2;
+    holeLayers          1;
+    useLayer            1;
 }
 
 fluxRequired
@@ -74,4 +75,133 @@ wallDist
 {
     method meshWave;
 }
-// ************************************************************************* //
+*/
+/*
+
+ddtSchemes
+{
+    default         Euler;
+}
+
+gradSchemes
+{
+    default         Gauss linear;
+}
+
+divSchemes
+{
+    default         none;
+    div(phi,U)      Gauss upwind;
+
+    div(phi,omega) bounded Gauss upwind;
+    div(phi,k)       Gauss limitedLinear 1;
+
+    div((nuEff*dev2(T(grad(U))))) Gauss linear;
+}
+
+laplacianSchemes
+{
+    default         Gauss linear corrected;
+    laplacian(diffusivity,cellDisplacement)  Gauss linear corrected;
+   // laplacian(yPsi) <laplacian scheme>;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         corrected;
+}
+
+oversetInterpolation
+{
+    // Faster but less accurate
+    method              trackingInverseDistance;
+    //searchBox           (-0.2 -0.2 -0.25)(0.2 0.02 0.25);
+    searchBoxDivisions  2{(64 64 64)};
+    allowInterpolatedDonors     false;
+}
+
+fluxRequired
+{
+    default         no;
+    pcorr           ;
+    p               ;
+}
+
+oversetInterpolationSuppressed
+{
+    grad(p);
+    surfaceIntegrate(phiHbyA);
+}
+
+
+wallDist
+{
+    method meshWave;
+}
+*/
+
+
+ddtSchemes
+{
+    default CrankNicolson 0.5;
+}
+
+gradSchemes
+{
+    //default         leastSquares;
+	default         Gauss linear;
+    grad(p)         Gauss linear limited 0.5;
+	//default cellMDLimited Gauss linear 0.5;
+	//grad(U) cellMDLimited Gauss linear 0.5;
+}
+
+divSchemes
+{
+    default          none;
+    div(phi,U)     	 Gauss linearUpwind grad(U);
+	div(phi,k)       Gauss linearUpwind grad(k);
+    div(phi,epsilon) Gauss linearUpwind grad(epsilon);
+    div(phi,omega)   Gauss linearUpwind grad(omega);
+ 	div(div(phi,U))  Gauss linearUpwind grad(U);
+    div((nuEff*dev2(T(grad(U))))) Gauss linear;
+}
+
+
+laplacianSchemes
+{
+    default         Gauss linear limited 0.777;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{ 
+    default         limited 0.777; //corrected
+}
+
+oversetInterpolation
+{
+    method          inverseDistance;
+    holeLayers          1;
+    useLayer            1;
+}
+
+fluxRequired
+{
+    default         no;
+    pcorr           ;
+    p               ;
+}
+
+wallDist
+{
+    method meshWave;
+}

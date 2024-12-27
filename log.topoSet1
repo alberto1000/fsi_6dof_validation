@@ -7,13 +7,13 @@
 \*---------------------------------------------------------------------------*/
 Build  : _be01ca78-20240625 OPENFOAM=2406 version=2406
 Arch   : "LSB;label=32;scalar=64"
-Exec   : topoSet -dict system/topoSetDictR2
-Date   : Nov 06 2024
-Time   : 18:11:36
+Exec   : topoSet -dict system/topoSetDict
+Date   : Dec 27 2024
+Time   : 19:03:32
 Host   : dell-Inspiron-16-Plus-7630
-PID    : 66187
+PID    : 279543
 I/O    : uncollated
-Case   : /home/dell/Desktop/fsi_rigid
+Case   : /home/dell/Desktop/fsi_6dof_validation
 nProcs : 1
 trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
 fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)

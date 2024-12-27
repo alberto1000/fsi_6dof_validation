@@ -20,7 +20,7 @@ method          hierarchical;
 
 coeffs
 {
-    n           (3 2 2);
+    n           (2 2 3);
     //delta       0.001; // default=0.001
     //order       xyz;   // default=xzy
 }

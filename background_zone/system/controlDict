@@ -20,16 +20,13 @@ application     overPimpleDyMFoam;
 
 startFrom       latestTime;
 
-startTime       0;
 
 stopAt          endTime;
 
-endTime         4;
+endTime         10;
 
-deltaT          5e-5;
+deltaT          1e-3;
 
-//writeControl    timeStep;
-//writeInterval   1e+1;
 
 writeControl    adjustableRunTime;
 writeInterval   0.01;
@@ -48,9 +45,9 @@ timePrecision   6;
 
 runTimeModifiable true;
 
-adjustTimeStep  false;
+adjustTimeStep  true;
 
-#include "maxCo"
+maxCo 		0.75;
 
 functions
 {

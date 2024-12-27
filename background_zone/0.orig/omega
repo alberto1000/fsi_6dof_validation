@@ -28,20 +28,9 @@ boundaryField
 
     seed
     {
-        type            omegaWallFunction;
-        value           $internalField;
-    }
-
-    inlet
-    {
-        type            fixedValue;
-        value           $internalField; 
-    }
-
-    outlet
-    {
         type            zeroGradient;
     }
+
 
     wall
     {

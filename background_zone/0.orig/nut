@@ -27,27 +27,18 @@ boundaryField
         type            overset;
     }
 
-    inlet
-    {
-        type            calculated;
-        value           uniform 0; 
-    }
-
-    outlet
-    {
-        type            calculated;
-        value           uniform 0;     
-    }
-
+    
     wall
     {
         type            nutkWallFunction;
         value           uniform 0;
+
     }
     seed
     {
-        type            nutkWallFunction;
+        type            calculated;
         value           uniform 0;
+
     }
 
 

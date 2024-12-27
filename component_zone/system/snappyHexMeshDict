@@ -17,9 +17,8 @@ FoamFile
 // Which of the steps to run
 castellatedMesh true;
 snap            true;
-addLayers       true;
+addLayers       false;
 
-   
 // Geometry. Definition of all surfaces. All surfaces are of class
 // searchableSurface.
 geometry
@@ -29,21 +28,6 @@ geometry
         type triSurfaceMesh;
         name seed;
     }
-    /*
-    refinementBox
-    {
-        type box;
-        min  (-0.15e-1 -0.15e-1 -2e-1);
-        max  ( 0.15e-1 0.15e-1 2e-1);
-    }
-    
-    refinementBox
-    {
-        type searchableCylinder;
-        point1  ( 0 0 -1);
-        point2  ( 0 0 3);
-        radius 0.35;
-    }*/
     
 }
 
@@ -53,19 +37,19 @@ castellatedMeshControls
 {
 
     // Refinement parameters
-    maxLocalCells 8000;  // Increased to allow more cells
-    maxGlobalCells 150000; // Increased to refine smaller details
+    maxLocalCells 2000;  // Increased to allow more cells
+    maxGlobalCells 247000; // Increase to refine smaller details
 
-    minRefinementCells 30;  // Allow for finer refinement
+    minRefinementCells 2;  // Allow for finer refinement
 
-    nCellsBetweenLevels 3;  // Finer control over the refinement levels
+    nCellsBetweenLevels 1;  // Finer control over the refinement levels
 
     // Explicit feature edge refinement
     features
     (
         {
             file "seed.eMesh";
-            level 6; // 8
+            level 4; // 8
         }
     );
 
@@ -75,7 +59,7 @@ castellatedMeshControls
         seed
         {
             // Surface-wise min and max refinement level
-            level (9 9);  // (11 12) 
+            level (20 21);  // (11 12) 
 
             patchInfo
             {
@@ -86,13 +70,13 @@ castellatedMeshControls
     }
 
     // Resolve sharp angles
-    resolveFeatureAngle 10;  // Refine more around sharp features
+    resolveFeatureAngle 20;  // Refine more around sharp features
 
     refinementRegions
     {
     }
 
-    locationInMesh ( -0.09 0.03 -1e-1);  // Adjusted to ensure correct location in the mesh
+    locationInMesh ( 0.00 0.00 0.085);  // Adjusted to ensure correct location in the mesh
 
     allowFreeStandingZoneFaces true;
 }
@@ -101,12 +85,12 @@ castellatedMeshControls
 // Settings for the snapping.
 snapControls
 {
-    nSmoothPatch 3;
-    tolerance 2;  // Adjusted tolerance for better snapping
-    nSolveIter 40;  // Increased iterations for smoother snapping
-    nRelaxIter 8;  // More relaxation iterations
+    nSmoothPatch 10;
+    tolerance 1.2;  // Adjusted tolerance for better snapping
+    nSolveIter 70;  // Increased iterations for smoother snapping
+    nRelaxIter 18;  // More relaxation iterations
 
-    nFeatureSnapIter 25;  // Higher iterations to capture detailed features
+    nFeatureSnapIter 45;  // Higher iterations to capture detailed features
 
     implicitFeatureSnap false;
     explicitFeatureSnap true;
@@ -121,23 +105,23 @@ addLayersControls
 
     layers
     {
-        "(lowerWall|seed).*"
+        "(seed).*"
         {
-            nSurfaceLayers 1;  // Increased to capture finer details
+            nSurfaceLayers 10;  // Increased to capture finer details
         }
     }
 
-    expansionRatio 1.2;  // Slower expansion for smoother layers
-    finalLayerThickness 0.0004;  // Adjusted to match the small thickness of the seed
-    minThickness 0.0001;  // Thinner layers for better fit
-
-    nGrow 0;
-    featureAngle 60;
+    expansionRatio 1.1;  // Slower expansion for smoother layers
+    finalLayerThickness 0.000027;  // Adjusted to match the small thickness of the seed
+    minThickness 0.000007;  // Thinner layers for better fit
+    nOuterIter	3; // the layers will be built in 3 loops
+    nGrow 20;
+    featureAngle 30;
     slipFeatureAngle 30;
-    nRelaxIter 3;
-    nSmoothSurfaceNormals 1;
-    nSmoothNormals 3;
-    nSmoothThickness 10;
+    nRelaxIter 20;
+    nSmoothSurfaceNormals 15;
+    nSmoothNormals 20;
+    nSmoothThickness 15;
     maxFaceThicknessRatio 0.5;
     maxThicknessToMedialRatio 0.3;
     minMedialAxisAngle 90;
@@ -166,5 +150,6 @@ writeFlags
 );
 
 mergeTolerance 1e-6;
+
 
 // ************************************************************************* //

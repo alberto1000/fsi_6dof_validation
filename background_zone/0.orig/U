@@ -34,23 +34,11 @@ boundaryField
         type            movingWallVelocity;
         value           uniform (0 0 0); 
     }
-
-    inlet
-    {
-        type            fixedValue;
-        value           uniform (0 0 0.8); 
-    }
-
-    outlet
-    {
-        type            zeroGradient;
- 
-    }
-
     
     wall
     {
-        type            noSlip;  
+        type            fixedValue;  
+        value           uniform (0 0 0); 
     }
     
      ".*"
